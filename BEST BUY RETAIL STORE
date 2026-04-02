@@ -1,0 +1,137 @@
+Major project 
+# Best Buy Retail Store - POS System
+# Developed for internal store use
+
+# Initial Inventory: [Price, Stock]
+products = {
+    "Milk": [3.50, 20],
+    "Bread": [2.50, 15],
+    "Eggs": [4.00, 30],
+    "Flour": [5.00, 3],
+    "Sugar": [3.00, 25],
+    "Coffee": [12.00, 10],
+    "Rice": [15.00, 50],
+    "Oil": [8.50, 8],
+    "Soap": [1.50, 40],
+    "Detergent": [18.00, 12]
+}
+
+def show_menu():
+    print("\n--- BEST BUY STORE MENU ---")
+    print("Item Name\tPrice\tStock")
+    for item in products:
+        price = products[item][0]
+        stock = products[item][1]
+        alert = " (LOW!)" if stock < 5 else ""
+        print(f"{item}\t\t${price}\t{stock}{alert}")
+    print("---------------------------")
+
+def run_pos():
+    cart = [] # items stored as [name, qty, unit_price]
+    
+    while True:
+        print("\n1. Add Item\n2. View Cart\n3. Remove Item\n4. Checkout\n5. Cancel")
+        choice = input("Select option: ")
+
+        if choice == "1":
+            show_menu()
+            name = input("Enter item name: ").capitalize()
+            if name in products:
+                try:
+                    qty = int(input(f"How many {name}s? "))
+                    if qty <= products[name][1]:
+                        products[name][1] -= qty # reduce stock
+                        cart.append([name, qty, products[name][0]])
+                        print("Added to cart.")
+                    else:
+                        print("Error: Not enough stock!")
+                except:
+                    print("Error: Please enter a valid number.")
+            else:
+                print("Item not found.")
+
+        elif choice == "2":
+            if not cart:
+                print("Cart is empty.")
+            else:
+                print("\n--- YOUR CART ---")
+                for i, entry in enumerate(cart):
+                    print(f"{i+1}. {entry[0]} - Qty: {entry[1]} (@${entry[2]})")
+
+        elif choice == "3":
+            if not cart:
+                print("Nothing to remove.")
+                continue
+            try:
+                idx = int(input("Enter item number to remove: ")) - 1
+                removed = cart.pop(idx)
+                products[removed[0]][1] += removed[1] # put stock back
+                print("Item removed.")
+            except:
+                print("Invalid selection.")
+
+        elif choice == "4":
+            if not cart:
+                print("Cart is empty!")
+                continue
+            
+            # Calculations
+            subtotal = 0
+            for item in cart:
+                subtotal += item[1] * item[2]
+            
+            discount = 0
+            if subtotal > 5000:
+                discount = subtotal * 0.05
+            
+            tax = (subtotal - discount) * 0.10
+            total = (subtotal - discount) + tax
+            
+            print(f"\nSubtotal: ${subtotal:.2f}")
+            if discount > 0:
+                print(f"Discount: -${discount:.2f}")
+            print(f"Tax (10%): ${tax:.2f}")
+            print(f"TOTAL DUE: ${total:.2f}")
+            
+            # Payment
+            while True:
+                try:
+                    pay = float(input("Amount Paid: $"))
+                    if pay >= total:
+                        change = pay - total
+                        break
+                    else:
+                        print(f"Need more money! Still owe ${total - pay:.2f}")
+                except:
+                    print("Invalid payment amount.")
+
+            # Print Receipt
+            print("\n" + "*"*30)
+            print("   BEST BUY RETAIL STORE")
+            print("*"*30)
+            for item in cart:
+                line_total = item[1] * item[2]
+                print(f"{item[0]} x{item[1]} \t\t${line_total:.2f}")
+            print("-" * 30)
+            print(f"Total: \t\t${total:.2f}")
+            print(f"Paid: \t\t${pay:.2f}")
+            print(f"Change: \t${change:.2f}")
+            print("\n  Thank you for shopping!")
+            print("*"*30)
+            break # end transaction
+
+        elif choice == "5":
+            # Return everything to stock if cancelled
+            for item in cart:
+                products[item[0]][1] += item[1]
+            print("Transaction cleared.")
+            break
+
+# Main loop to keep the program running for multiple customers
+while True:
+    print("\n=== POS SYSTEM ACTIVE ===")
+    run_pos()
+    again = input("Start new customer? (y/n): ")
+    if again.lower() != 'y':
+        print("Closing system...")
+        break
