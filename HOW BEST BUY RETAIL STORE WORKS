@@ -1,0 +1,30 @@
+🛒 Best Buy Retail Store: POS Quick-Start Guide
+System Version: 1.0
+Status: Operational
+1. Starting a Transaction
+ * When the system is active, select Option 1 (New Transaction).
+ * The Product Catalog will appear. Note the Item Name and Price.
+ * Low Stock Alert: If you see (LOW!) next to an item, inform the manager that we have fewer than 5 units left.
+2. Managing the Cart
+ * To Add Items: Select 1. Type the item name (e.g., Milk) and the quantity. The system will automatically check if we have enough in stock.
+ * To View Progress: Select 2 at any time to see what’s currently in the customer's basket.
+ * To Fix a Mistake: Select 3 to remove a specific item. The system will automatically put that item back into our inventory count.
+3. Discounts & Taxes
+ * Automatic Tax: A 10% sales tax is added to every order automatically.
+ * Bulk Discount: If a customer spends more than $5,000.00, the system automatically applies a 5% discount to their subtotal before tax. You don't need to do any manual math!
+4. Checkout & Payment
+ * Select 4 to finalize the sale.
+ * The System Calculates:
+   * Subtotal
+   * Discount (if applicable)
+   * Tax
+   * Total Due
+ * Input Payment: Enter the exact amount the customer gives you.
+   * Note: If the amount is less than the Total Due, the system will tell you the remaining balance.
+ * Change: The system calculates the exact change to return to the customer.
+5. Troubleshooting & Safety
+ * Cancellations: If a customer walks away, select Option 5 (Cancel). This clears the cart and restores all items to the store's stock levels.
+ * Invalid Inputs: If you accidentally type a letter instead of a number for the quantity, don't worry—the system will simply ask you to try again without crashing.
+💡 Pro-Tip for Cashiers:
+Always type the item name exactly as it appears in the menu (e.g., use "Detergent" instead of "Soap Powder"). The system is case-sensitive but I've programmed it to handle basic capitalization!
+Would you like me to create a "Daily Sales Report" script that saves these transactions to a file for the manager at the end of the day?
