@@ -1,21 +1,21 @@
-Major project 
+# Major Project
 # Best Buy Retail Store - POS System
 # Developed for internal store use
 
 # Initial Inventory: [Price, Stock]
-products = {
-    "Milk": [550, 100],
-    "Bread": [550, 105],
-    "Eggs": [400, 130],
-    "Flour": [500, 303],
-    "5kgSugar": [3000, 75],
-    "Coffee": [1200, 610],
-    "11.34kgsJasmineRice": [7500, 50],
-    "25lbsRice": [1500, 50],
-    "Oil": [850, 8],
-    "Soap": [150, 40],
-    "Bleach": [200, 50],
-    "Detergent": [1800, 12]
+products = {  
+    "Milk":         [550, 100],
+    "Bread":        [550, 105],
+    "Eggs":         [400, 130],
+    "Flour":        [500, 303],
+    "Sugar-5kg":        [3000, 75],
+    "Coffee":       [1200, 610],
+    "Jasmine-rice":      [7500, 50],
+    "Rice-25lbs":         [1500, 50],
+    "Oil":          [850, 8],
+    "Soap":         [150, 40],
+    "Bleach":       [200, 50],
+    "Detergent":    [1800, 12]
 }
 
 def show_menu():
